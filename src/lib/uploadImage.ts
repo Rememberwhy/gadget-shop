@@ -1,32 +1,18 @@
-// src/lib/uploadImage.ts
 import { supabase } from './supabaseClient'
 
-export async function uploadImage(file: File, productId: string) {
-  const fileExt = file.name.split('.').pop()
-  const fileName = `${productId}-${Date.now()}.${fileExt}`
-
+export async function uploadImage(file: File, filename: string): Promise<string> {
   const { data, error: uploadError } = await supabase.storage
     .from('product-images')
-    .upload(fileName, file)
+    .upload(filename, file, { upsert: true })
 
   if (uploadError) {
-    // serialize it so you can read message and status
     console.error('Upload error details:', JSON.stringify({
-      status: uploadError.status,
       message: uploadError.message,
       details: uploadError,
     }, null, 2))
-    throw uploadError
+    throw new Error('Image upload failed')
   }
 
-  const { data: publicUrlData, error: urlError } = supabase.storage
-    .from('product-images')
-    .getPublicUrl(fileName)
-
-  if (urlError) {
-    console.error('Public URL error:', urlError)
-    throw urlError
-  }
-
-  return publicUrlData.publicUrl
+  const url = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/product-images/${filename}`
+  return url
 }
