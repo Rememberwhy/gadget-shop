@@ -4,7 +4,7 @@ import { useParams } from 'next/navigation'
 import { notFound } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { supabase } from '@/lib/supabaseClient'
-import { useCart } from '../../../context/CartContext'
+import { useCart } from '@/context/CartContext'
 import Zoom from 'react-medium-image-zoom'
 import 'react-medium-image-zoom/dist/styles.css'
 
@@ -70,11 +70,11 @@ export default function ProductDetailPage() {
         {/* Selected Image with Zoom */}
         {selectedImage && (
           <div className="relative mb-6">
-            <Zoom>
+            <Zoom key={selectedImage}> {/* 🧠 Zoom must have key to reset */}
               <img
                 src={selectedImage}
                 alt={product.name}
-                className="w-full h-96 object-contain bg-white rounded cursor-zoom-in"
+                className="w-full h-96 object-contain bg-white rounded cursor-zoom-in transition duration-300 ease-in-out"
               />
             </Zoom>
             <div className="absolute top-0 right-0 m-2 px-2 py-1 text-xs bg-black text-white rounded bg-opacity-50">
@@ -84,7 +84,7 @@ export default function ProductDetailPage() {
         )}
 
         {/* Image Gallery */}
-        {product.imageUrls?.length > 1 && (
+        {Array.isArray(product.imageUrls) && product.imageUrls.length > 1 && (
           <div className="grid grid-cols-3 md:grid-cols-5 gap-3 mb-6">
             {product.imageUrls.map((url, index) => (
               <img
@@ -105,7 +105,7 @@ export default function ProductDetailPage() {
         <p className="text-base text-gray-300 mb-6">{product.description}</p>
 
         {/* Features */}
-        {product.features?.length > 0 && (
+        {Array.isArray(product.features) && product.features.length > 0 && (
           <div className="mb-4">
             <h2 className="text-lime-400 font-semibold">🧩 Features</h2>
             <ul className="list-disc list-inside text-sm text-gray-300">
@@ -117,7 +117,7 @@ export default function ProductDetailPage() {
         )}
 
         {/* Tags */}
-        {product.tags?.length > 0 && (
+        {Array.isArray(product.tags) && product.tags.length > 0 && (
           <div className="mb-6">
             <h2 className="text-lime-400 font-semibold">🏷️ Tags</h2>
             <div className="flex flex-wrap gap-2 mt-2">
