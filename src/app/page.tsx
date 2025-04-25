@@ -5,7 +5,7 @@ import ProductCard from '@/components/ProductCard'
 import { supabase } from '@/lib/supabaseClient'
 import CategoryGrid from '@/components/CategoryGrid'
 import BrandMarquee from '@/components/BrandMarquee'
-import LightningBG from '@/components/LightningBG'
+
 
 interface Product {
   id: string
@@ -33,7 +33,7 @@ export default function Home() {
   return (
     <div className="relative min-h-screen bg-black text-white">
       {/* Optional Lightning background effect */}
-      <LightningBG />
+      
 
       {/* Fixed Background Hero Section */}
       <section className="relative w-full min-h-[90vh] flex items-center justify-center overflow-hidden">
