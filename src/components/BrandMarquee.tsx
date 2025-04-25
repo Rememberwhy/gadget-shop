@@ -23,7 +23,7 @@ export default function BrandMarquee() {
           Trusted by hackers & tinkerers worldwide →
         </h2>
   
-        <div className="overflow-hidden border border-cyan-500 rounded-lg shadow-xl bg-white/70 backdrop-blur-md">
+        <div className="overflow-hidden border border-cyan-500 rounded-lg shadow-xl bg-white/100 backdrop-blur-md">
           <div className="flex animate-scroll space-x-10 px-6 py-4">
             {[...logos, ...logos].map((src, idx) => (
               <Image
