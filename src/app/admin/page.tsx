@@ -104,7 +104,7 @@ export default function AdminPage() {
 
           const freq: Record<string, number> = {}
           ordersData.forEach((o) =>
-            o.items.forEach((i) => {
+            o.items.forEach((i: OrderItem) => {
               freq[i.name] = (freq[i.name] || 0) + i.quantity
             })
           )
