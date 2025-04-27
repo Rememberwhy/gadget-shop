@@ -14,7 +14,7 @@ export default function ResetPasswordPage() {
     setMessage('')
 
     const { error } = await supabase.auth.resetPasswordForEmail(email, {
-      redirectTo: `${window.location.origin}/update-password`, // ✅ Optional: implement this page too
+      redirectTo: `${window.location.origin}/update-password`,
     })
 
     if (error) {
@@ -26,7 +26,9 @@ export default function ResetPasswordPage() {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-black text-white px-4">
-      <h1 className="text-3xl font-mono text-lime-400 mb-6 border border-lime-500 px-4 py-2 rounded shadow-md">Reset Password</h1>
+      <h1 className="text-3xl font-mono text-lime-400 mb-6 border border-lime-500 px-4 py-2 rounded shadow-md">
+        Reset Password
+      </h1>
 
       <form onSubmit={handleReset} className="bg-zinc-900 p-6 rounded shadow-md w-full max-w-sm space-y-4">
         <input

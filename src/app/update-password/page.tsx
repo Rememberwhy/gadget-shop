@@ -7,26 +7,44 @@ import { supabase } from '@/lib/supabaseClient'
 export default function UpdatePasswordPage() {
   const router = useRouter()
   const [newPassword, setNewPassword] = useState('')
-  const [confirmed, setConfirmed] = useState(false)
+  const [sessionChecked, setSessionChecked] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [message, setMessage] = useState('')
+
+  useEffect(() => {
+    const checkSession = async () => {
+      const { data, error } = await supabase.auth.getSession()
+      if (error || !data.session) {
+        // If no valid session, redirect to login
+        router.push('/login')
+      } else {
+        setSessionChecked(true)
+      }
+    }
+    checkSession()
+  }, [router])
 
   const handleUpdate = async (e: React.FormEvent) => {
     e.preventDefault()
     setError(null)
     setMessage('')
 
-    const { data, error } = await supabase.auth.updateUser({
-      password: newPassword,
-    })
+    const { error } = await supabase.auth.updateUser({ password: newPassword })
 
     if (error) {
       setError(error.message)
     } else {
-      setConfirmed(true)
       setMessage('Password updated successfully! Redirecting to login...')
       setTimeout(() => router.push('/login'), 3000)
     }
+  }
+
+  if (!sessionChecked) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-black text-white text-lg font-mono">
+        Checking session...
+      </div>
+    )
   }
 
   return (
