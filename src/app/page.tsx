@@ -41,7 +41,7 @@ export default function Home() {
         <div
           className="absolute top-0 left-0 w-full h-full bg-cover bg-center bg-no-repeat bg-fixed z-0 hidden sm:block"
           style={{
-            backgroundImage: "url('/images/hexamridi.png')",
+            // backgroundImage: "url('/images/hexamridi.png')",
             backgroundSize: 'cover',
           }}
         />

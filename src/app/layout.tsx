@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { CartProvider } from '../context/CartContext'
 import CartLink from '@/components/CartLink'
 import Footer from '@/components/Footer'
+import TouchHoverFix from '@/components/TouchHoverFix'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -36,16 +37,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body className={`flex flex-col min-h-screen bg-black text-white ${inter.className}`}>
+        <TouchHoverFix />
         <CartProvider>
           {/* Header */}
           <header className="bg-black text-white px-4 py-4 border-b border-lime-500 shadow-md z-30 relative">
             <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-0">
-              <Link
-                href="/"
-                className="text-2xl sm:text-3xl font-mono font-bold text-lime-400 px-4 py-1 border border-lime-500 rounded shadow-lg hover:invert hover:scale-105 transition-all duration-300 tracking-wider"
-              >
-                HEX AMRIDI #1
-              </Link>
+            <Link
+            href="/"
+             className="hoverable text-2xl sm:text-3xl font-mono font-bold text-lime-400 px-4 py-1 border border-lime-500 rounded shadow-lg hover:invert hover:scale-105 hovered:invert hovered:scale-105 transition-all duration-300 tracking-wider"
+            >
+            HEX AMRIDI #1
+            </Link>
 
               <nav className="flex flex-wrap justify-center sm:justify-end items-center gap-4 sm:gap-6 text-sm sm:text-base font-mono">
                 <Link
