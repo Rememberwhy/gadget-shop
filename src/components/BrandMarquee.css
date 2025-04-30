@@ -67,15 +67,15 @@
 /* Professional breathing neon glow */
 @keyframes glow {
   0% {
-    filter: drop-shadow(0 0 2px #00FF41) drop-shadow(0 0 2px #00FF41);
+    filter: drop-shadow(0 0 2px #064015) drop-shadow(0 0 4px #064015);
     opacity: 1;
   }
   50% {
-    filter: drop-shadow(0 0 2px #00FF41) drop-shadow(0 0 2px #00FF41);
+    filter: drop-shadow(0 0 2px #064015) drop-shadow(0 0 2px #064015);
     opacity: 1;
   }
   100% {
-    filter: drop-shadow(0 0 2px #00FF41) drop-shadow(0 0 2px #00FF41);
+    filter: drop-shadow(0 0 2px #064015) drop-shadow(0 0 2px #064015);
     opacity: 1;
   }
 }
