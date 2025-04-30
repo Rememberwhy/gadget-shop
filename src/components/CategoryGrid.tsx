@@ -10,8 +10,8 @@ const categories = [
   { name: 'Radio & SDR', icon: '/category-icons/icon4.png', slug: 'radio-sdr' },
   { name: 'Smart Cards & NFC', icon: '/category-icons/icon6.png', slug: 'nfc-smart-cards' },
   { name: 'Keyloggers & HID', icon: '/category-icons/icon7.png', slug: 'keyloggers-hid' },
-  { name: 'Debugging Tools', icon: '/category-icons/icon8.png', slug: 'debugging-tools' },
-  { name: 'Storage & USBs', icon: '/category-icons/icon9.png', slug: 'storage-usbs' },
+  { name: 'Debugging Tools', icon: '/category-icons/icon9.png', slug: 'debugging-tools' },
+  { name: 'Storage & USBs', icon: '/category-icons/icon8.png', slug: 'storage-usbs' },
   { name: 'Wearables & Spy Gear', icon: '/category-icons/icon3.png', slug: 'spy-gear' },
   { name: 'Accessories', icon: '/category-icons/icon2.png', slug: 'accessories' },
 ]
