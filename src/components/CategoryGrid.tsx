@@ -5,7 +5,7 @@ import Image from 'next/image'
 
 const categories = [
   { name: 'Flipper & Tools', icon: '/category-icons/icon1.png', slug: 'flipper-tools' },
-  { name: 'Raspberry Pi & Kits', icon: '/category-icons/icon2.png', slug: 'raspberry-pi-kits' },
+  { name: 'Raspberry Pi & Kits', icon: '/category-icons/ocon2.png', slug: 'raspberry-pi-kits' },
   { name: 'Wi-Fi & Networking', icon: '/category-icons/icon3.png', slug: 'wifi-networking' },
   { name: 'Radio & SDR', icon: '/category-icons/icon4.png', slug: 'radio-sdr' },
   { name: 'Smart Cards & NFC', icon: '/category-icons/icon6.png', slug: 'nfc-smart-cards' },
