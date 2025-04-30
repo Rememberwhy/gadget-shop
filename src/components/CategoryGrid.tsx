@@ -23,18 +23,18 @@ export default function CategoryGrid() {
         <Link
           key={cat.slug}
           href={`/shop/${encodeURIComponent(cat.slug)}`}
-          className="bg-gray-900 text-white p-5 rounded-xl border border-gray-700 
+          className="bg-gray-900 text-white h-48 w-full rounded-xl border border-gray-700 
             hover:bg-purple-500 hover:text-black hover:border-lime-400 
             shadow-md transition duration-300 ease-in-out 
             hover:shadow-[0_0_15px_#00ff8899] hover:scale-[1.03] 
-            flex flex-col items-center text-center"
+            flex flex-col items-center justify-center text-center p-4"
         >
           <Image
             src={cat.icon}
             alt={cat.name}
             width={60}
             height={60}
-            className="mb-3 object-contain"
+            className="object-contain mb-3"
           />
           <h2 className="text-base sm:text-lg font-semibold">{cat.name}</h2>
         </Link>
@@ -42,3 +42,4 @@ export default function CategoryGrid() {
     </div>
   )
 }
+
