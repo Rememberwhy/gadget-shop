@@ -54,9 +54,9 @@ export default function Home() {
 
       {/* Featured Products Section */}
       <section className="relative z-10 px-4 py-12 max-w-6xl mx-auto">
-      <h2 className="text-center text-2xl sm:text-3xl font-mono font-bold text-lime-400 px-4 py-2 border border-lime-500 rounded shadow-lg hover:invert hover:scale-105 transition-all duration-300 tracking-wider mb-6 bg-black/80">
-       FEATURED GADGETS
-      </h2>
+      <h1 className="text-2xl sm:text-3xl font-mono text-lime-400 text-center mb-6 px-4 py-2 border border-lime-400 rounded shadow-[0_0_12px_#00ff88] tracking-wide">
+         FEATURED GADGETS
+      </h1>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
       {products.map((product) => (
