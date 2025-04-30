@@ -20,7 +20,7 @@ export default function ShopPage() {
   return (
     <div className="p-6">
     <h1 className="text-2xl sm:text-3xl font-mono text-lime-400 text-center mb-6 px-4 py-2 border border-lime-400 rounded shadow-[0_0_12px_#00ff88] tracking-wide">
-  EXPLORE GADGEST CATEGORIES
+  EXPLORE GADGET CATEGORIES
 </h1>
 
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
