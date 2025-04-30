@@ -39,16 +39,21 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={`flex flex-col min-h-screen bg-black text-white ${inter.className}`}>
         <TouchHoverFix />
         <CartProvider>
-          {/* Header */}
-          <header className="bg-black text-white px-4 py-4 border-b border-lime-500 shadow-md z-30 relative">
-            <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-0">
-            <Link
-            href="/"
-             className="hoverable text-2xl sm:text-3xl font-mono font-bold text-lime-400 px-4 py-1 border border-lime-500 rounded shadow-lg hover:invert hover:scale-105 hovered:invert hovered:scale-105 transition-all duration-300 tracking-wider"
-            >
-            HEX AMRIDI #1
-            </Link>
 
+          {/* Header with Logo */}
+          <header className="bg-black text-white px-4 py-3 border-b border-lime-500 shadow-md z-30 relative">
+
+
+            <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-0">
+
+            <Link href="/" className="block">
+              <img
+                 src="/images/hexamridi-logo.png"
+                 alt="Hex Amridi Logo"
+                className="h-26 sm:h-30 w-auto max-w-full transition-all animate-pulse-glow duration-300 hover:drop-shadow-[0_0_18px_#8B5CF6]"
+                />
+           </Link>
+              {/* Navigation */}
               <nav className="flex flex-wrap justify-center sm:justify-end items-center gap-4 sm:gap-6 text-sm sm:text-base font-mono">
                 <Link
                   href="/shop"
@@ -68,14 +73,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </header>
 
           {/* Neon Green Horizontal Line Below Header */}
-          <div className="w-full h-[7px] bg-lime-400 shadow-[0_0_10px_#00FF88] z-20 relative bg-lime-400 shadow-[0_0_12px_#00FF88] animate-pulse" />
+          <div className="w-full h-[7px] bg-lime-400 shadow-[0_0_10px_#00FF88] z-20 relative animate-pulse" />
 
           {/* Page Content With Vertical Border Lines */}
           <div className="relative flex-grow z-10">
             {/* Left Border Line */}
-            <div className="absolute top-0 left-0 h-full w-[7px] bg-lime-400 shadow-[0_0_10px_#00FF88] z-10 bg-lime-400 shadow-[0_0_12px_#00FF88] animate-pulse" />
+            <div className="absolute top-0 left-0 h-full w-[7px] bg-lime-400 shadow-[0_0_12px_#00FF88] animate-pulse z-10" />
             {/* Right Border Line */}
-            <div className="absolute top-0 right-0 h-full w-[7px] bg-lime-400 shadow-[0_0_10px_#00FF88] z-10 bg-lime-400 shadow-[0_0_12px_#00FF88] animate-pulse" />
+            <div className="absolute top-0 right-0 h-full w-[7px] bg-lime-400 shadow-[0_0_12px_#00FF88] animate-pulse z-10" />
 
             {/* Main Content */}
             <main className="p-6 relative z-20">{children}</main>

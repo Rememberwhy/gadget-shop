@@ -19,9 +19,9 @@ const categories = [
 export default function ShopPage() {
   return (
     <div className="p-6">
-      <h1 className="text-3xl font-bold text-black mb-6"> Explore Hacker Categories</h1>
+      <h1 className="text-3xl font-bold text-white text-center mb-6"> Explore Hacker Categories</h1>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 text-center">
         {categories.map((cat) => (
           <Link
             key={cat.slug}

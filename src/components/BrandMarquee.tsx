@@ -4,12 +4,12 @@ import Image from 'next/image'
 import './BrandMarquee.css'
 
 const logos = [
-  '/logos/cisco.svg',
+  
   '/logos/console.png',
   '/logos/google.png',
-  '/logos/kali.svg',
+  '/logos/kali.png',
   '/logos/msi.png',
-  '/logos/raspberry.svg',
+  '/logos/raspberry.png',
   '/logos/sql.png',
   '/logos/suse.png',
   '/logos/tech.png',
@@ -40,21 +40,6 @@ export default function BrandMarquee() {
           </div>
         </div>
 
-        {/* Bottom row - scroll right */}
-        <div className="marquee">
-          <div className="marquee-content scroll-right">
-            {[...logos, ...logos].map((src, idx) => (
-              <Image
-                key={`bottom-${idx}`}
-                src={src}
-                alt="Brand Logo"
-                width={60}
-                height={60}
-                className="brand-logo"
-              />
-            ))}
-          </div>
-        </div>
       </div>
     </div>
   )
