@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@stripe/react-stripe-js": "^3.6.0",
     "@stripe/stripe-js": "^7.2.0",
     "@supabase/supabase-js": "^2.49.4",
     "@tsparticles/engine": "^3.8.1",
