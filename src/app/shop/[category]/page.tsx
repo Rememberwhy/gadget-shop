@@ -23,7 +23,6 @@ export default function CategoryPage() {
   const params = useParams()
   const categorySlug = decodeURIComponent(params.category as string)
 
-  // Mapping slug back to category name
   const slugToCategory = (slug: string) => {
     return slug
       .replace(/-/g, ' ')
@@ -38,27 +37,29 @@ export default function CategoryPage() {
         .from('products')
         .select('*')
         .eq('categorySlug', categorySlug)
-  
+
       if (error) {
         console.error('Error fetching category products:', error)
       } else {
         setProducts(data)
       }
-  
+
       setLoading(false)
     }
-  
+
     fetchProducts()
   }, [categorySlug])
 
   return (
-    <div className="p-6">
-      <h1 className="text-3xl font-bold text-white mb-6">🧠 {categoryName}</h1>
+    <section className="relative z-10 px-4 py-12 max-w-6xl mx-auto">
+      <h1 className="uppercase group text-2xl sm:text-3xl font-mono text-lime-400 text-center mb-8 px-4 py-2 border border-lime-400 rounded shadow-[0_0_12px_#00ff88] tracking-wide transition duration-300 ease-in-out hover:bg-[#fefefe] hover:text-purple-800 hover:shadow-[0_0_20px_#6B21A8]">
+        {categoryName}
+      </h1>
 
       {loading ? (
-        <p className="text-gray-400">Loading...</p>
+        <p className="text-gray-400 text-center">Loading...</p>
       ) : products.length === 0 ? (
-        <p className="text-gray-500">No products found in this category.</p>
+        <p className="text-gray-500 text-center">No products found in this category.</p>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {products.map((product) => (
@@ -66,6 +67,6 @@ export default function CategoryPage() {
           ))}
         </div>
       )}
-    </div>
+    </section>
   )
 }

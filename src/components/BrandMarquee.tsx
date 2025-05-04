@@ -19,8 +19,8 @@ const logos = [
 export default function BrandMarquee() {
   return (
     <div className="relative mx-auto my-16 w-full max-w-5xl text-center">
-      <h1 className="text-2xl sm:text-3xl font-mono text-lime-400 text-center mb-6 px-4 py-2 border border-lime-400 rounded shadow-[0_0_12px_#00ff88] tracking-wide">
-        TRUSTED BY HACKERS & THINKERS WORLDWIDE
+      <h1 className="group text-2xl sm:text-3xl font-mono text-lime-400 text-center mb-6 px-4 py-2 border border-lime-400 rounded shadow-[0_0_12px_#00ff88] tracking-wide transition duration-300 ease-in-out hover:bg-[#fefefe] hover:text-purple-800 hover:shadow-[0_0_20px_#6B21A8]">
+        TRUSTED BY ELITE THINKERS WORLDWIDE
       </h1>
 
       <div className="marquee-container rounded-lg shadow-xl overflow-hidden">

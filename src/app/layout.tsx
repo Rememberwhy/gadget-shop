@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { CartProvider } from '../context/CartContext'
 import CartLink from '@/components/CartLink'
 import Footer from '@/components/Footer'
-import TouchHoverFix from '@/components/TouchHoverFix'
+
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -37,7 +37,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body className={`flex flex-col min-h-screen bg-black text-white ${inter.className}`}>
-        <TouchHoverFix />
+      
         <CartProvider>
 
           {/* Header with Logo */}
