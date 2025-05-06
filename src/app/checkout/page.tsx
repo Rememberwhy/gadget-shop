@@ -78,6 +78,7 @@ export default function CheckoutPage() {
         items: cart,
         total,
         currency: 'GEL',
+        paid_with: 'None',
       },
     ])
 
@@ -104,7 +105,7 @@ export default function CheckoutPage() {
 
     const data = await res.json()
     if (data?.url) {
-      window.location.assign(data.url) // ✅ mobile-safe redirect
+      window.location.assign(data.url)
     } else {
       setError('Failed to create Stripe checkout session.')
     }
