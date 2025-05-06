@@ -1,7 +1,6 @@
 'use client'
 
-import { useParams } from 'next/navigation'
-import { notFound } from 'next/navigation'
+import { useParams, notFound } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { supabase } from '@/lib/supabaseClient'
 import { useCart } from '@/context/CartContext'
@@ -25,7 +24,6 @@ export default function ProductDetailPage() {
   const [product, setProduct] = useState<Product | null>(null)
   const [loading, setLoading] = useState(true)
   const [selectedImage, setSelectedImage] = useState<string | null>(null)
-
   const { addToCart } = useCart()
 
   useEffect(() => {
@@ -64,26 +62,26 @@ export default function ProductDetailPage() {
   }
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-6 text-white font-mono">
+    <div className="max-w-5xl mx-auto px-4 py-6 text-white font-mono">
       <div className="bg-black border border-lime-400 rounded-md p-6 shadow-md group">
 
-        {/* Selected Image with Zoom */}
+        {/* 🔍 Selected Image (Zoomable) */}
         {selectedImage && (
-          <div className="relative mb-6">
-            <Zoom key={selectedImage}> {/* 🧠 Zoom must have key to reset */}
-              <img
-                src={selectedImage}
-                alt={product.name}
-                className="w-full h-96 object-contain bg-white rounded cursor-zoom-in transition duration-300 ease-in-out"
-              />
-            </Zoom>
-            <div className="absolute top-0 right-0 m-2 px-2 py-1 text-xs bg-black text-white rounded bg-opacity-50">
+          <div className="w-full h-[500px] flex justify-center items-center bg-black rounded-md mb-6 overflow-hidden relative">
+          <Zoom key={selectedImage}>
+            <img
+              src={selectedImage}
+              alt={product.name}
+              className="max-h-full max-w-full object-contain cursor-zoom-in transition duration-300 ease-in-out"
+            />
+          </Zoom>
+            <div className="absolute top-0 right-0 m-2 px-2 py-1 text-xs bg-black text-white rounded bg-opacity-60">
               Click to zoom
             </div>
           </div>
         )}
 
-        {/* Image Gallery */}
+        {/* 🖼️ Image Gallery */}
         {Array.isArray(product.imageUrls) && product.imageUrls.length > 1 && (
           <div className="grid grid-cols-3 md:grid-cols-5 gap-3 mb-6">
             {product.imageUrls.map((url, index) => (
@@ -92,7 +90,7 @@ export default function ProductDetailPage() {
                 src={url}
                 onClick={() => setSelectedImage(url)}
                 alt={`thumb-${index}`}
-                className={`h-24 w-full object-contain border rounded cursor-pointer transition ${
+                className={`h-24 w-full object-cover border rounded cursor-pointer transition ${
                   selectedImage === url ? 'border-lime-400' : 'border-gray-600'
                 }`}
               />
@@ -100,11 +98,12 @@ export default function ProductDetailPage() {
           </div>
         )}
 
+        {/* 🛠️ Product Info */}
         <h1 className="text-3xl font-bold text-lime-300 mb-2">{product.name}</h1>
         <p className="text-sm text-gray-400 mb-4">₾{(product.price / 100).toFixed(2)}</p>
         <p className="text-base text-gray-300 mb-6">{product.description}</p>
 
-        {/* Features */}
+        {/* 🧩 Features */}
         {Array.isArray(product.features) && product.features.length > 0 && (
           <div className="mb-4">
             <h2 className="text-lime-400 font-semibold">🧩 Features</h2>
@@ -116,7 +115,7 @@ export default function ProductDetailPage() {
           </div>
         )}
 
-        {/* Tags */}
+        {/* 🏷️ Tags */}
         {Array.isArray(product.tags) && product.tags.length > 0 && (
           <div className="mb-6">
             <h2 className="text-lime-400 font-semibold">🏷️ Tags</h2>
@@ -133,7 +132,7 @@ export default function ProductDetailPage() {
           </div>
         )}
 
-        {/* Add to Cart */}
+        {/* 🛒 Add to Cart */}
         <button
           onClick={handleAddToCart}
           className="w-full mt-6 bg-lime-500 hover:bg-lime-400 text-black font-bold py-2 rounded transition"
