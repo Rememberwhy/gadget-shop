@@ -8,12 +8,12 @@ const categories = [
   { name: 'Raspberry Pi & Kits', icon: '/category-icons/ocon2.png', slug: 'raspberry-pi-kits' },
   { name: 'Wi-Fi & Networking', icon: '/category-icons/icon3.png', slug: 'wifi-networking' },
   { name: 'Radio & SDR', icon: '/category-icons/icon4.png', slug: 'radio-sdr' },
-  { name: 'Smart Cards & NFC', icon: '/category-icons/icon6.png', slug: 'nfc-smart-cards' },
-  { name: 'Keyloggers & HID', icon: '/category-icons/icon9.png', slug: 'keyloggers-hid' },
+  { name: 'Smart Cards & NFC', icon: '/category-icons/icon5.png', slug: 'nfc-smart-cards' },
+  { name: 'Keyloggers & HID', icon: '/category-icons/icon6.png', slug: 'keyloggers-hid' },
   { name: 'Debugging Tools', icon: '/category-icons/icon7.png', slug: 'debugging-tools' },
   { name: 'Storage & USBs', icon: '/category-icons/icon8.png', slug: 'storage-usbs' },
-  { name: 'Wearables & Spy Gear', icon: '/category-icons/icon3.png', slug: 'spy-gear' },
-  { name: 'Accessories', icon: '/category-icons/icon2.png', slug: 'accessories' },
+  { name: 'Wearables & Spy Gear', icon: '/category-icons/icon9.png', slug: 'spy-gear' },
+  { name: 'Accessories', icon: '/category-icons/icon10.png', slug: 'accessories' },
 ]
 
 export default function ShopPage() {
