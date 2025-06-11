@@ -16,34 +16,73 @@ const categories = [
   { name: 'Accessories', icon: '/category-icons/icon10.png', slug: 'accessories' },
 ]
 
+const scripts = [
+  { name: 'Wi-Fi Deauther Script', icon: '/script-icons/deauther.png', slug: 'wifi-deauther' },
+  { name: 'NFC Clone Tool', icon: '/script-icons/nfc.png', slug: 'nfc-clone' },
+  { name: 'Credential Dumper', icon: '/script-icons/creds.png', slug: 'cred-dumper' },
+  { name: 'Bluetooth Sniffer', icon: '/script-icons/bluetooth.png', slug: 'bt-sniffer' },
+]
+
 export default function CategoryGrid() {
   return (
+    <div className="space-y-12">
+      {/* CATEGORY GRID */}
+      <div>
+        
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+          {categories.map((cat) => (
+            <Link
+              key={cat.slug}
+              href={`/shop/${encodeURIComponent(cat.slug)}`}
+              className="bg-gray-900 text-white h-48 w-full rounded-xl border border-gray-700 
+                hover:bg-purple-500 hover:text-black hover:border-lime-400 
+                shadow-md transition duration-300 ease-in-out 
+                hover:shadow-[0_0_15px_#00ff8899] hover:scale-[1.03] 
+                flex flex-col items-center justify-center text-center p-4"
+            >
+              <Image
+                src={cat.icon}
+                alt={cat.name}
+                width={70}
+                height={70}
+                className="object-contain mb-3"
+              />
+              <h2 className="text-white text-sm sm:text-base md:text-base font-medium leading-tight text-center line-clamp-2 max-w-[95%]">
+                {cat.name}
+              </h2>
+            </Link>
+          ))}
+        </div>
+      </div>
 
-
-    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
-      {categories.map((cat) => (
-        <Link
-          key={cat.slug}
-          href={`/shop/${encodeURIComponent(cat.slug)}`}
-          className="bg-gray-900 text-white h-48 w-full rounded-xl border border-gray-700 
-            hover:bg-purple-500 hover:text-black hover:border-lime-400 
-            shadow-md transition duration-300 ease-in-out 
-            hover:shadow-[0_0_15px_#00ff8899] hover:scale-[1.03] 
-            flex flex-col items-center justify-center text-center p-4"
-        >
-          <Image
-            src={cat.icon}
-            alt={cat.name}
-            width={60}
-            height={60}
-            className="object-contain mb-3"
-          />
-          <h2 className="text-base sm:text-lg font-semibold">{cat.name}</h2>
-        </Link>
-      ))}
+      {/* SCRIPTS GRID */}
+      <div>
+        <h2 className="group text-2xl sm:text-3xl font-mono text-lime-400 text-center mb-6 px-4 py-2 border border-lime-400 rounded shadow-[0_0_12px_#00ff88] tracking-wide transition duration-300 ease-in-out hover:bg-[#fefefe] hover:text-purple-800 hover:shadow-[0_0_20px_#6B21A8]">SCRIPTS</h2>
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+          {scripts.map((script) => (
+            <Link
+              key={script.slug}
+              href={`/scripts/${encodeURIComponent(script.slug)}`}
+              className="bg-black text-white h-48 w-full rounded-xl border border-gray-800 
+                hover:bg-emerald-500 hover:text-black hover:border-yellow-300 
+                shadow-md transition duration-300 ease-in-out 
+                hover:shadow-[0_0_15px_#00ffee99] hover:scale-[1.03] 
+                flex flex-col items-center justify-center text-center p-4"
+            >
+              <Image
+                src="/script-icons/code.png"
+                alt={script.name}
+                width={70}
+                height={70}
+                className="object-contain mb-3"
+              />
+              <h2 className="text-white text-sm sm:text-base md:text-base font-medium leading-tight text-center line-clamp-2 max-w-[95%]">
+                {script.name}
+              </h2>
+            </Link>
+          ))}
+        </div>
+      </div>
     </div>
-
-    
   )
 }
-

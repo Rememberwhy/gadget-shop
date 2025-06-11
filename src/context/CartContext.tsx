@@ -1,18 +1,24 @@
 'use client'
 
-import { createContext, useContext, useEffect, useState, ReactNode } from 'react'
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  ReactNode,
+} from 'react'
 
 export interface CartItem {
   id: string
   name: string
-  price: number
+  price: number // stored in tetri (e.g. 15000 for ₾150.00)
   image: string
   quantity: number
 }
 
 interface CartContextType {
   cart: CartItem[]
-  addToCart: (item: CartItem) => void
+  addToCart: (item: Omit<CartItem, 'price'> & { price: number }) => void
   removeFromCart: (id: string) => void
   clearCart: () => void
 }
@@ -37,15 +43,19 @@ export function CartProvider({ children }: { children: ReactNode }) {
     localStorage.setItem('cart', JSON.stringify(cart))
   }, [cart])
 
-  const addToCart = (item: CartItem) => {
+  const addToCart = (item: Omit<CartItem, 'price'> & { price: number }) => {
+    const priceInTetri = Math.round(item.price * 100)
+
     setCart(prev => {
       const exists = prev.find(p => p.id === item.id)
       if (exists) {
         return prev.map(p =>
-          p.id === item.id ? { ...p, quantity: p.quantity + item.quantity } : p
+          p.id === item.id
+            ? { ...p, quantity: p.quantity + item.quantity }
+            : p
         )
       }
-      return [...prev, item]
+      return [...prev, { ...item, price: priceInTetri }]
     })
   }
 
@@ -56,7 +66,9 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const clearCart = () => setCart([])
 
   return (
-    <CartContext.Provider value={{ cart, addToCart, removeFromCart, clearCart }}>
+    <CartContext.Provider
+      value={{ cart, addToCart, removeFromCart, clearCart }}
+    >
       {children}
     </CartContext.Provider>
   )

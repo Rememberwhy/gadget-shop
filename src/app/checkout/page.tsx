@@ -96,12 +96,12 @@ export default function CheckoutPage() {
   const handleStripeCheckout = async () => {
     const stripe = await stripePromise
     if (!stripe) return setError('Stripe failed to initialize.')
-
+    
     const res = await fetch('/api/create-checkout-session', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ items: cart }),
-    })
+    }) 
 
     const data = await res.json()
     if (data?.url) {
