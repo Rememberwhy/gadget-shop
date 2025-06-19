@@ -1,73 +1,72 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import ProductCard from '@/components/ProductCard'
-import { supabase } from '@/lib/supabaseClient'
-import CategoryGrid from '@/components/CategoryGrid'
-import BrandMarquee from '@/components/BrandMarquee'
+import { useRouter } from 'next/navigation'
+import { useState } from 'react'
+import { Canvas } from '@react-three/fiber'
+import { OrbitControls, useGLTF } from '@react-three/drei'
+import './globals.css'
 
-interface Product {
-  id: string
-  name: string
-  price: number
-  image: string
-  description: string
-  features?: string[]
-  tags?: string[]
+import { Suspense } from 'react'
+
+
+function SaturnModel() {
+  const { scene } = useGLTF('public/images/saturn.glb')
+  return <primitive object={scene} scale={2.5} />
 }
 
-export default function Home() {
-  const [products, setProducts] = useState<Product[]>([])
+export default function GatePage() {
+  const router = useRouter()
+  const [openGate, setOpenGate] = useState(false)
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      const { data, error } = await supabase.from('products').select('*')
-      if (error) console.error('Error fetching:', error)
-      else setProducts(data)
-    }
-
-    fetchProducts()
-  }, [])
+  const handleEnter = () => {
+    setOpenGate(true)
+    setTimeout(() => router.push('/home'), 2000)
+  }
 
   return (
-    <div className="relative min-h-screen bg-black text-white">
-      {/* Hero Section */}
-      <section className="relative w-full min-h-[90vh] flex items-center justify-center overflow-hidden">
-        <div
-          className="absolute top-0 left-0 w-full h-full bg-cover bg-center bg-no-repeat bg-fixed z-0 hidden sm:block"
-          style={{ backgroundSize: 'cover' }}
-        />
-        <div className="relative z-10 w-full px-4 sm:px-6 lg:px-8 pt-8">
-        <h1 className="group text-2xl sm:text-3xl font-mono text-lime-400 text-center mb-6 px-4 py-2 border border-lime-400 rounded shadow-[0_0_12px_#00ff88] tracking-wide transition duration-300 ease-in-out hover:bg-[#fefefe] hover:text-purple-800 hover:shadow-[0_0_20px_#6B21A8]">
-        SHOP FOR THOSE WHO DECODE THE WORLD 
-            </h1>
-          <div className="max-w-6xl lg:max-w-7xl xl:max-w-[90rem] 2xl:max-w-[100rem] mx-auto text-center py-10">
-            
-            <CategoryGrid />
-          </div>
-        </div>
-      </section>
+    <div
+      className={`relative w-screen h-screen bg-black text-lime-400 font-mono flex flex-col items-center justify-center overflow-hidden ${
+        openGate ? 'gate-open' : ''
+      }`}
+    >
+      {/* 🌌 Background */}
+      <div className="absolute inset-0 z-0 pointer-events-none opacity-20 animate-pulse-glow bg-[radial-gradient(circle_at_30%_30%,rgba(0,255,136,0.2),transparent_70%)]" />
 
-      {/* Featured Products Section */}
-      <section className="relative z-10 py-12">
-        <div className="w-full max-w-6xl lg:max-w-7xl xl:max-w-[90rem] 2xl:max-w-[100rem] mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="group text-2xl sm:text-3xl font-mono text-lime-400 text-center mb-6 px-4 py-2 border border-lime-400 rounded shadow-[0_0_12px_#00ff88] tracking-wide transition duration-300 ease-in-out hover:bg-[#fefefe] hover:text-purple-800 hover:shadow-[0_0_20px_#6B21A8]">
-            FEATURED GADGETS
-          </h1>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-            {products.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
+      {/* 🪐 Saturn GLB Canvas */}
+      {!openGate && (
+        <div className="absolute w-[400px] h-[400px] top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
+         <Canvas camera={{ position: [0, 0, 5] }}>
+           <ambientLight intensity={1} />
+           <pointLight position={[10, 10, 10]} />
+           <Suspense fallback={null}>
+           <SaturnModel />
+           </Suspense>
+          <OrbitControls enableZoom={false} autoRotate autoRotateSpeed={0.5} />
+          </Canvas>
         </div>
-      </section>
+      )}
 
-      {/* Brand Marquee */}
-      <section className="relative z-10 py-12">
-        <div className="w-full max-w-6xl lg:max-w-7xl xl:max-w-[90rem] 2xl:max-w-[100rem] mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <BrandMarquee />
-        </div>
-      </section>
+      {/* Gate doors */}
+      <div className="absolute top-0 left-0 w-1/2 h-full bg-gradient-to-br from-lime-800 to-black z-20 transition-transform duration-[2000ms] ease-in-out gate-left" />
+      <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-br from-lime-800 to-black z-20 transition-transform duration-[2000ms] ease-in-out gate-right" />
+
+      {/* Title */}
+      <h1 className="z-30 text-3xl sm:text-4xl md:text-5xl text-center mb-10 animate-pulse-glow">
+        WELCOME TO HEX AMRIDI REALM
+      </h1>
+
+      {/* Button */}
+      <button
+        onClick={handleEnter}
+        className="z-30 px-6 py-3 border border-lime-400 text-lime-400 hover:bg-lime-400 hover:text-black transition duration-300 rounded-xl shadow-[0_0_20px_lime]"
+      >
+        Enter the Realm
+      </button>
+
+      {/* Terminal Footer */}
+      <p className="absolute bottom-6 text-sm text-lime-500 z-30 animate-typing">
+        &gt; root@hexamridi:~$ access granted
+      </p>
     </div>
   )
 }
