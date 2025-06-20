@@ -34,13 +34,14 @@ export default function ShopPage() {
               hover:shadow-[0_0_15px_#00ff8899] hover:scale-[1.03] 
               flex flex-col items-center justify-center text-center p-4"
           >
-            <Image
-              src={cat.icon}
-              alt={cat.name}
-              width={60}
-              height={60}
-              className="mb-3 object-contain"
-            />
+          <Image
+           src={cat.icon}
+           alt={cat.name}
+           width={70}
+           height={70}
+           style={{ height: 'auto' }}
+           className="object-contain mb-3"
+          />
             <h2 className="text-sm sm:text-base font-semibold">{cat.name}</h2>
           </Link>
         ))}

@@ -22,7 +22,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <>
               <header className="bg-black text-white px-4 py-3 border-b border-lime-500 shadow-md z-30 relative">
                 <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-0">
-                  <Link href="/" className="block">
+                  <Link href="/home" className="block">
                     <img
                       src="/images/hexamridi-logo.png"
                       alt="Hex Amridi Logo"
@@ -30,12 +30,23 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     />
                   </Link>
                   <nav className="flex flex-wrap justify-center sm:justify-end items-center gap-4 sm:gap-6 text-sm sm:text-base font-mono">
-                    <Link href="/shop" className="hover:text-cyan-400 transition active:text-lime-400 border-b-2 border-transparent hover:border-cyan-400">
+                    <Link href="/shop" className="text-lime-400 hover:text-cyan-400 transition active:text-lime-400 border-b-2 border-transparent hover:border-cyan-400">
                       Shop
                     </Link>
                     <CartLink />
-                    <Link href="/admin" className="hover:text-cyan-400 transition active:text-lime-400 border-b-2 border-transparent hover:border-cyan-400">
-                      Admin
+                    <Link href="/admin" className="text-lime-400 hover:text-cyan-400 transition active:text-lime-400 border-b-2 border-transparent hover:border-cyan-400">
+                      Login
+                    </Link>
+                    <Link href="/disclaimer" className="text-lime-400 hover:text-cyan-400 transition active:text-lime-400 border-b-2 border-transparent hover:border-cyan-800">
+                      Disclaimer
+                    </Link>
+
+                    <Link href="/terms" className="text-lime-400 hover:underline transition active:text-lime-300 hover:border-cyan-400">
+                      Terms
+                    </Link>
+
+                    <Link href="/privacy-policy" className="text-lime-400 hover:underline">
+                      Policy
                     </Link>
                   </nav>
                 </div>

@@ -16,16 +16,17 @@ export async function POST(req: Request) {
 
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
-      line_items: body.items.map((item: any) => ({
+        line_items: body.items.map((item: any) => ({
         price_data: {
-          currency: 'gel',
-          product_data: {
+         currency: 'gel',
+        product_data: {
             name: item.name,
           },
-          unit_amount: Math.round(item.price * 100), // GEL → tetri
-        },
+          unit_amount: item.price, // FIXED
+         },
         quantity: item.quantity,
       })),
+      
       mode: 'payment',
       success_url: `${req.headers.get('origin')}/thank-you`,
       cancel_url: `${req.headers.get('origin')}/checkout`,

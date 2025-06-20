@@ -193,13 +193,7 @@ export default function CheckoutPage() {
 
           {error && <p className="text-red-500 text-sm">{error}</p>}
 
-          <button
-            type="submit"
-            disabled={loading || cart.length === 0}
-            className="w-full bg-lime-400 text-black py-2 rounded font-bold hover:bg-lime-300 transition"
-          >
-            {loading ? 'Placing Order...' : 'Place Order (No Payment)'}
-          </button>
+         
 
           <button
             type="button"
@@ -207,7 +201,7 @@ export default function CheckoutPage() {
             disabled={cart.length === 0}
             className="w-full bg-blue-600 text-white py-2 rounded font-bold hover:bg-blue-500 mt-4 transition"
           >
-            Pay with Card (Stripe)
+            Pay with Card
           </button>
 
           {canShowPRB && paymentRequest && (

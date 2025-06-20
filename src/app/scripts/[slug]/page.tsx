@@ -8,7 +8,7 @@ import { useRouter } from 'next/navigation'
 
 const scripts = [
   {
-    name: 'WI-FI DEAUTHENTICATOR',
+    name: 'WI-FI SCANNER',
     slug: 'wifi-deauther',
     icon: '/script-icons/deauth.png',
     price: 120.0,
@@ -21,7 +21,7 @@ const scripts = [
     ],
   },
   {
-    name: 'NFC CLONE TOOL',
+    name: 'NFC TOOL',
     slug: 'nfc-clone',
     icon: '/script-icons/nfcscript.png',
     price: 150.0,
@@ -33,7 +33,7 @@ const scripts = [
     ],
   },
   {
-    name: 'BLUETOOTH SNIFFER',
+    name: 'BLUETOOTH CHECKER',
     slug: 'bt-sniffer',
     icon: '/script-icons/blue.png',
     price: 110.0,
@@ -42,7 +42,7 @@ const scripts = [
   },
 
     {
-        name: 'CREDENTIAL DUMPER',
+        name: 'CREDENTIAL CHECKER',
         slug: 'cred-dumper',
         icon: '/script-icons/credential.png',
         price: 100.0,
