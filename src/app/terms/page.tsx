@@ -5,45 +5,45 @@ import Link from 'next/link'
 export default function TermsPage() {
   return (
     <main className="max-w-4xl mx-auto px-4 py-16 text-white font-mono">
-      <h1 className="text-4xl font-bold mb-6 text-lime-400">Terms of Service</h1>
+      <h1 className="text-4xl font-bold mb-6 text-lime-400">მომსახურების პირობები</h1>
 
       <p className="mb-4">
-        Welcome to <strong>Hexamridi.tech</strong>. By accessing or using this site, you agree to be bound by these terms and conditions. If you disagree with any part of the terms, please do not use our services.
+        მოგესალმებით <strong>Hexamridi.tech</strong>-ზე. საიტზე წვდომით ან მისი გამოყენებით, თქვენ ეთანხმებით ამ პირობებს. თუ არ ეთანხმებით რომელიმე პუნქტს, გთხოვთ, არ გამოიყენოთ ჩვენი სერვისები.
       </p>
 
-      <h2 className="text-2xl text-lime-300 mt-8 mb-2">1. Educational Use Only</h2>
+      <h2 className="text-2xl text-lime-300 mt-8 mb-2">1. მხოლოდ საგანმანათლებლო მიზნებისთვის</h2>
       <p className="mb-4">
-        All tools, scripts, and resources provided on Hexamridi.tech are intended solely for ethical hacking, academic study, and cybersecurity awareness purposes. The platform is designed to help users learn about security in a controlled and lawful environment.
+        ვებსაიტზე არსებული ყველა ინსტრუმენტი, სკრიპტი და რესურსი განკუთვნილია მხოლოდ ეთიკური ჰაკინგისთვის, აკადემიური სწავლებისთვის და კიბერუსაფრთხოების ცნობიერების ასამაღლებლად. პლატფორმა შექმნილია უსაფრთხოების შესახებ სწავლისთვის კანონიერ და კონტროლირებად გარემოში.
       </p>
 
-      <h2 className="text-2xl text-lime-300 mt-8 mb-2">2. Legal Disclaimer</h2>
+      <h2 className="text-2xl text-lime-300 mt-8 mb-2">2. იურიდიული პასუხისმგებლობა</h2>
       <p className="mb-4">
-        Any misuse of the materials provided, including but not limited to unauthorized access, disruption of systems, or malicious activities, is strictly prohibited. Users are solely responsible for complying with their local laws. Hexamridi and its operators are not liable for any misuse of the tools shared.
+        მასალების ნებისმიერი არასწორი გამოყენება — მათ შორის უნებართვო წვდომა, სისტემის დარღვევა ან მავნე ქმედებები — მკაცრად აკრძალულია. მომხმარებელი თვითონ არის პასუხისმგებელი თავისი ქვეყნის კანონმდებლობის დაცვაზე. Hexamridi და მისი ოპერატორები არ აგებენ პასუხს ინსტრუმენტების არასწორი გამოყენებისთვის.
       </p>
 
-      <h2 className="text-2xl text-lime-300 mt-8 mb-2">3. Georgian Cybercrime Law Notice</h2>
+      <h2 className="text-2xl text-lime-300 mt-8 mb-2">3. საქართველოს კიბერდანაშაულის შესახებ კანონი</h2>
       <p className="mb-4">
-        Under Georgian law, unauthorized access to computer systems, data breaches, or disruption of digital infrastructure is punishable by fines and imprisonment. We do not support or endorse criminal activities and actively work to promote ethical cybersecurity practices in Georgia.
+        საქართველოს კანონმდებლობის მიხედვით, კომპიუტერულ სისტემაში უნებართვო წვდომა, მონაცემების გაჟონვა ან ინფრასტრუქტურის დარღვევა ისჯება ჯარიმითა და თავისუფლების აღკვეთით. ჩვენ არ ვუჭერთ მხარს არალეგალურ ქმედებებს და აქტიურად ვუჭერთ მხარს ეთიკური კიბერუსაფრთხოების განვითარებას საქართველოში.
       </p>
 
-      <h2 className="text-2xl text-lime-300 mt-8 mb-2">4. Awareness & Education Mission</h2>
+      <h2 className="text-2xl text-lime-300 mt-8 mb-2">4. ცნობიერება და საგანმანათლებლო მისია</h2>
       <p className="mb-4">
-        Our mission is to build cybersecurity awareness, especially in Georgia, and to train future professionals in responsible digital behavior. By using this platform, you support a community that seeks to create a safer digital space.
+        ჩვენი მიზანია კიბერუსაფრთხოების შესახებ ცნობიერების ამაღლება, განსაკუთრებით საქართველოში, და მომავალი პროფესიონალების მომზადება პასუხისმგებლიანი ციფრული ქცევისთვის. ამ პლატფორმის გამოყენებით, თქვენ უჭერთ მხარს საზოგადოებას, რომელიც ცდილობს უფრო უსაფრთხო ციფრული სივრცის შექმნას.
       </p>
 
-      <h2 className="text-2xl text-lime-300 mt-8 mb-2">5. Release of Responsibility</h2>
+      <h2 className="text-2xl text-lime-300 mt-8 mb-2">5. პასუხისმგებლობის განთავისუფლება</h2>
       <p className="mb-4">
-        By using our website or downloading our tools, you agree to release Hexamridi.tech and its team from any responsibility or liability regarding the use, outcome, or impact of these resources.
+        ჩვენი ვებსაიტის გამოყენებით ან ინსტრუმენტების ჩამოტვირთვით, თქვენ ეთანხმებით, რომ გაათავისუფლოთ Hexamridi.tech და მისი გუნდი პასუხისმგებლობისგან, რაც შეეხება ამ რესურსების გამოყენებას, შედეგებს ან გავლენას.
       </p>
 
-      <h2 className="text-2xl text-lime-300 mt-8 mb-2">6. Updates and Changes</h2>
+      <h2 className="text-2xl text-lime-300 mt-8 mb-2">6. განახლებები და ცვლილებები</h2>
       <p className="mb-4">
-        We reserve the right to update or change these terms at any time. It is your responsibility to check this page periodically for updates.
+        ჩვენ ვიტოვებთ უფლებას, ნებისმიერ დროს განვაახლოთ ან შევცვალოთ ეს პირობები. თქვენი პასუხისმგებლობაა პერიოდულად გადაამოწმოთ ეს გვერდი ცვლილებების თვალსაზრისით.
       </p>
 
       <p className="mt-8">
-        If you have any questions or concerns, please <Link href="contact" className="text-lime-400">contact us</Link>.
+        კითხვების ან შეშფოთების შემთხვევაში, გთხოვთ <Link href="contact" className="text-lime-400">დაგვიკავშირდეთ</Link>.
       </p>
     </main>
   )
-}
+} 

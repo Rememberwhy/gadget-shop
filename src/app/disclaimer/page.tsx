@@ -2,58 +2,58 @@ export default function DisclaimerPage() {
   return (
     <main className="min-h-screen bg-black text-lime-400 p-8 font-mono">
       <div className="max-w-3xl mx-auto mt-20">
-        <h1 className="text-4xl font-bold mb-6 text-center">Disclaimer</h1>
+        <h1 className="text-4xl font-bold mb-6 text-center">უარყოფითი პასუხისმგებლობა</h1>
 
         <p className="mb-4">
-          The content, tools, and scripts available on <strong>hexamridi.tech</strong> are provided solely for <strong>educational, ethical, and research purposes</strong>.
+          ვებსაიტზე <strong>hexamridi.tech</strong> განთავსებული შინაარსი, ინსტრუმენტები და სკრიპტები განკუთვნილია მხოლოდ <strong>საგანმანათლებლო, ეთიკური და კვლევითი მიზნებისთვის</strong>.
         </p>
 
         <p className="mb-4">
-          Our mission is to support the development of cybersecurity skills, raise awareness about digital safety, and help build a more secure internet — especially within Georgia. We operate with the goal of empowering students, security researchers, and future professionals in the ethical use of technology.
+          ჩვენი მისიაა ხელი შევუწყოთ კიბერუსაფრთხოების უნარების განვითარებას, გავზარდოთ ცნობიერება ციფრულ უსაფრთხოებაზე და დავეხმაროთ საქართველოში უფრო უსაფრთხო ინტერნეტის შექმნას. ჩვენ ვმუშაობთ იმისთვის, რომ სტუდენტებს, უსაფრთხოების მკვლევრებს და მომავლო პროფესიონალებს მივცეთ ცოდნის ეთიკურად გამოყენების საშუალება.
         </p>
 
         <p className="mb-4">
-          <strong>We do not condone or support illegal activity of any kind.</strong> The materials here are to be used only in authorized, controlled environments (e.g., test labs, CTFs, educational systems). Any use for hacking without permission, cybercrime, or unauthorized access is strictly forbidden.
+          <strong>ჩვენ არ ვუჭერთ მხარს არც ერთ უკანონო ქმედებას.</strong> ეს მასალები განკუთვნილია მხოლოდ ავტორიზებულ და კონტროლირებად გარემოში გამოსაყენებლად (მაგალითად, ლაბორატორიებში, CTF კონკურსებში ან საგანმანათლებლო სისტემებში). ნებისმიერი ჰაკერული ქმედება ნებართვის გარეშე, კიბერდანაშაულის ჩადენა ან უნებართვო წვდომა მკაცრად აკრძალულია.
         </p>
 
-        <h2 className="text-2xl font-semibold mt-10 mb-4">Georgian Cybercrime Law</h2>
+        <h2 className="text-2xl font-semibold mt-10 mb-4">საქართველოს კიბერდანაშაულის კანონი</h2>
 
         <p className="mb-4">
-          According to the <strong>Criminal Code of Georgia (Chapter 15¹ – Cybercrime)</strong>:
+          საქართველოს <strong>სისხლის სამართლის კოდექსის (თავი 15¹ – კიბერდანაშაულები)</strong> მიხედვით:
         </p>
         <ul className="list-disc list-inside mb-4 text-lime-300">
-          <li><strong>Article 284:</strong> Illegal access to a computer system is punishable by law.</li>
-          <li><strong>Article 285:</strong> Interference with data or systems (deletion, modification, blocking) is a criminal offense.</li>
-          <li><strong>Article 286:</strong> Illegal interception of data transmission is prohibited.</li>
-          <li><strong>Article 286¹:</strong> Distribution or use of malicious software and hacking tools is considered a crime.</li>
+          <li><strong>მუხლი 284:</strong> კომპიუტერულ სისტემაში უკანონო შეღწევა ისჯება კანონით.</li>
+          <li><strong>მუხლი 285:</strong> მონაცემებსა ან სისტემაში ხელშეშლა (წაშლა, შეცვლა, დაბლოკვა) წარმოადგენს დანაშაულს.</li>
+          <li><strong>მუხლი 286:</strong> მონაცემთა გადაცემის უკანონო ჩაწერა აკრძალულია.</li>
+          <li><strong>მუხლი 286¹:</strong> მავნე პროგრამული უზრუნველყოფის ან ჰაკერული ხელსაწყოების გავრცელება ან გამოყენება ითვლება დანაშაულად.</li>
         </ul>
 
         <p className="mb-4">
-          Anyone using this website or its contents in violation of Georgian or international law is fully responsible for their actions and may face legal consequences.
+          ვებსაიტის ან მისი შინაარსის გამოყენება საქართველოს ან საერთაშორისო კანონმდებლობის დარღვევით წარმოადგენს სრულად მომხმარებლის პასუხისმგებლობას და შეიძლება მოჰყვეს სამართლებრივი შედეგები.
         </p>
 
-        <h2 className="text-2xl font-semibold mt-10 mb-4"> Responsibility & Legal Release</h2>
+        <h2 className="text-2xl font-semibold mt-10 mb-4">პასუხისმგებლობა და სამართლებრივი უარყოფა</h2>
 
         <p className="mb-4">
-          By accessing or using this website, you agree to use its contents <strong>only in legal and ethical ways</strong>. You also acknowledge and accept that:
+          ვებსაიტზე წვდომით ან მისი გამოყენებით, თქვენ ეთანხმებით, რომ გამოიყენებთ შინაარსს <strong>მხოლოდ კანონიერად და ეთიკურად</strong>. ასევე ადასტურებთ და თანხმდებით, რომ:
         </p>
         <ul className="list-disc list-inside mb-4 text-lime-300">
-          <li><strong>Hexamridi.tech</strong> and its contributors are not liable for any misuse of information, tools, or content provided.</li>
-          <li>We explicitly <strong>disclaim any responsibility or legal liability</strong> for how users choose to use the scripts or software featured on this site.</li>
-          <li>The responsibility for using knowledge from this site lies 100% with the individual user.</li>
+          <li><strong>Hexamridi.tech</strong> და მისი ავტორები არ აგებენ პასუხს შინაარსის არასწორი გამოყენებისთვის.</li>
+          <li>ჩვენ პირდაპირ ვუარყოფთ <strong>პასუხისმგებლობას ან სამართლებრივ ვალდებულებას</strong> იმაზე, თუ როგორ გამოიყენებენ მომხმარებლები სკრიპტებს ან პროგრამებს.</li>
+          <li>ამ ვებსაიტზე განთავსებული ცოდნის გამოყენებაზე სრული პასუხისმგებლობა ეკისრება თითოეულ მომხმარებელს.</li>
         </ul>
 
         <p className="mb-4">
-          This website is not responsible for any damage, criminal activity, or unauthorized access that may occur due to improper use of its content.
+          ეს ვებსაიტი არ არის პასუხისმგებელი არანაირ ზიანზე, დანაშაულებრივ ქმედებაზე ან უნებართვო წვდომაზე, რაც შეიძლება გამოწვეული იყოს შინაარსის არასწორი გამოყენებით.
         </p>
 
-        <h2 className="text-2xl font-semibold mt-10 mb-4"> Our Vision</h2>
+        <h2 className="text-2xl font-semibold mt-10 mb-4">ჩვენი ხედვა</h2>
         <p className="mb-4">
-          Our purpose is to build a safer digital world by educating users, promoting ethical cybersecurity, and helping secure Georgia’s cyberspace. We aim to encourage youth, students, and professionals to develop real-world skills to protect themselves and their communities.
+          ჩვენი მიზანია შევქმნათ უფრო უსაფრთხო ციფრული სამყარო, განათლებით მომხმარებლებს, ეთიკური კიბერუსაფრთხოების წახალისებით და საქართველოს კიბერსივრცის დაცვით. ჩვენ გვინდა შევაძლებინოთ ახალგაზრდებს, სტუდენტებს და პროფესიონალებს რეალური უნარების განვითარება, რათა დაიცვან საკუთარი თავი და თავიანთი საზოგადოება.
         </p>
 
         <p className="mt-8 italic text-sm text-center text-lime-400">
-          Knowledge is power. Use it to protect — never to harm.
+          ცოდნა არის ძალა. გამოიყენე დასაცავად — არასდროს ზიანისთვის.
         </p>
       </div>
     </main>
