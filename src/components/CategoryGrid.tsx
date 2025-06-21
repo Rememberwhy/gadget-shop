@@ -17,10 +17,10 @@ const categories = [
 ]
 
 const scripts = [
-  { name: 'Wi-Fi Deauther Script', icon: '/script-icons/deauther.png', slug: 'wifi-deauther' },
-  { name: 'NFC Clone Tool', icon: '/script-icons/nfc.png', slug: 'nfc-clone' },
-  { name: 'Credential Dumper', icon: '/script-icons/creds.png', slug: 'cred-dumper' },
-  { name: 'Bluetooth Sniffer', icon: '/script-icons/bluetooth.png', slug: 'bt-sniffer' },
+  { name: 'Wi-Fi სკანერი', icon: '/script-icons/deauther.png', slug: 'wifi-deauther' },
+  { name: 'NFC ბრონი', icon: '/script-icons/nfc.png', slug: 'nfc-clone' },
+  { name: 'მონაცაემების გაჟონვის დეტექტორი', icon: '/script-icons/creds.png', slug: 'cred-dumper' },
+  { name: 'ვირუსებისგან წმენდა და მონიტორინგი', icon: '/script-icons/bluetooth.png', slug: 'bt-sniffer' },
 ]
 
 export default function CategoryGrid() {

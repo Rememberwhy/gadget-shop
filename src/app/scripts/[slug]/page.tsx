@@ -8,49 +8,50 @@ import { useRouter } from 'next/navigation'
 
 const scripts = [
   {
-    name: 'WI-FI SCANNER',
+    name: 'WI-FI სკანერი',
     slug: 'wifi-deauther',
     icon: '/script-icons/deauth.png',
     price: 120.0,
     content:
-      'This script deauthenticates Wi-Fi clients by sending disassociation packets using ESP8266. Great for testing network resilience.',
+      'ეს კოდი ამოწმებს და ტესტავს თქვენს Wi-Fi-ს, ამის მეშვეობით თქვენ აღმოაჩენთ რამდენად დაცულია თქვენ ინტერნეტი და თქვენი უსაფრთხოება. მოყვება დაყენების და გამართვის ყველანაირი ინსტრუქცია. თანამედროვე ტექნოლოგიებზე მორგებული დამცველი ჰექსამრიდისგან! ',
     features: [
-      'Written in Python + ESP8266',
-      'Customizable SSID target list',
-      'Includes setup guide and firmware',
+      'უახლოესი ქსელების მონიტორინგი',
+      'სიგნალის სიძლიერისა და არხების ანალიზი',
+      'იდეალურია ტესტირებისთვის, პენტესტინგისთვის და უსაფრთხოების ანალიზისთვის',
     ],
   },
   {
-    name: 'NFC TOOL',
+    name: 'NFC ბრონი  მაქსიმალური დაცვა უნებართვო შეღწევისგან!',
     slug: 'nfc-clone',
     icon: '/script-icons/nfcscript.png',
     price: 150.0,
-    content: 'Clone NFC tags with UID manipulation tools and card emulation.',
+    content: 'NFC ბრონი არის უსაფრთხოების სკრიპტი, რომელიც შექმნილია იმისთვის, რომ დაიცვას თქვენი მოწყობილობა ან NFC ბარათი არასანქცირებული წვდომისა და მავნე შეტევებისგან. იგი სკანირებს მიმდებარე სიგნალებს, ამოიცნობს საეჭვო კავშირს და ავტომატურად ბლოკავს არასასურველ ქმედებებს.',
     features: [
-      'Supports MIFARE Classic',
-      'Android + PN532 compatible',
-      'Script & GUI included',
+      'იცავს პირად მონაცემებს',
+      'აძლიერებს NFC უსაფრთხოებას',
+      'გამოგადგებათ როგორც პირადი, ასევე პროფესიონალური უსაფრთხოებისთვის',
     ],
   },
   {
-    name: 'BLUETOOTH CHECKER',
+    name: 'ვირუსებისგან წმენდა და მონიტორინგი',
     slug: 'bt-sniffer',
     icon: '/script-icons/blue.png',
     price: 110.0,
-    content: 'Analyze Bluetooth packets and perform passive sniffing for BLE devices.',
-    features: ['Python-based CLI', 'Supports BLE 4.0+', 'Documentation included'],
+    content: 'ეს სკრიპტი სკანირებს სისტემას მავნე ფაილებისა და საეჭვო პროცესების დასადგენად. იგი ავტომატურად ასუფთავებს მოწყობილობას ვირუსებისგან და აწარმოებს მუდმივ მონიტორინგს სისტემის უსაფრთხოების გასაუმჯობესებლად.',
+    features: ['სწრაფი ანალიზი', 'ვირუსული ელემენტების ამოღება', 'უწყვეტი მონიტორინგი და გაფრთხილებაs'],
   },
 
     {
-        name: 'CREDENTIAL CHECKER',
+        name: 'მონაცაემების გაჟონვის დეტექტორი',
         slug: 'cred-dumper',
         icon: '/script-icons/credential.png',
         price: 100.0,
-        content: 'Extract credentials from various sources including browsers and applications.',
+        content: 'ეს სკრიპტი მონიტორინგს უწევს თქვენს სისტემას და ამოიცნობს მგრძნობიარე მონაცემების გაჟონვას. იგი ავტომატურად აფრთხილებს, თუ რაიმე საეჭვო აქტივობა დაფიქსირდა, რაც ხელს შეუწყობს თქვენი მონაცემების უსაფრთხოების დაცვას.',
         features: [
-        'Supports Chrome, Firefox, Edge',
-        'Python script with GUI',
-        'Includes decryption tools',
+        'რეალურ დროში მონიტორინგი',
+        'სენსიტიური მონაცემების გადაცემის დაფიქსირება',
+        'შეტყობინება და ავტომატური შეჩერება',
+        'მონაცემთა უსაფრთხოების გაძლიერება',
         ],
     },
 ]
@@ -86,14 +87,14 @@ export default function ScriptPage(props: { params: Promise<{ slug: string }> })
         />
 
         <div className="flex-1 text-white">
-          <h1 className="text-4xl font-bold text-lime-400 mb-3">{script.name}</h1>
-          <p className="text-gray-300 mb-6 text-lg">{script.content}</p>
+          <h1 className="text-2xl font-bold text-lime-400 mb-3">{script.name}</h1>
+          <p className="text-gray-300 mb-6 text-2lg">{script.content}</p>
 
           <div className="mb-4">
             <h3 className="text-xl font-semibold text-cyan-400 mb-2">Features:</h3>
             <ul className="list-disc list-inside space-y-1">
               {script.features.map((feature, i) => (
-                <li key={i} className="text-sm text-gray-200">
+                <li key={i} className="text-lg text-gray-200">
                   {feature}
                 </li>
               ))}
