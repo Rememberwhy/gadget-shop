@@ -7,6 +7,11 @@ const nextConfig: NextConfig = {
   images: {
     domains: ['qtgvoykkgtmvolyhpaxv.supabase.co'],
   },
+
+    i18n: {
+     locales: ['en', 'ka'], // 'ka' is the language code for Georgian
+    defaultLocale: 'en',
+  },
 };
 
 export default nextConfig;
