@@ -21,7 +21,7 @@ export default function CartPage() {
               <img src={item.image} alt={item.name} className="w-24 h-24 object-contain mr-4" />
               <div className="flex-1">
                 <h2 className="text-lg font-semibold">{item.name}</h2>
-                <p>₾{(item.price / 100).toFixed(2)} × {item.quantity}</p>
+                <p>£{(item.price / 100).toFixed(2)} × {item.quantity}</p>
               </div>
               <button
                 onClick={() => removeFromCart(item.id)}
@@ -32,7 +32,7 @@ export default function CartPage() {
             </div>
           ))}
           <div className="text-right font-bold mt-4">
-            Total: ₾{(total / 100).toFixed(2)}
+            Total: £{(total / 100).toFixed(2)}
           </div>
           <Link
             href="/checkout"

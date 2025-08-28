@@ -1,48 +1,78 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-import { useRouter } from 'next/navigation'
+import { useEffect, useState, FormEvent } from 'react'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { supabase } from '@/lib/supabaseClient'
 
 export default function UpdatePasswordPage() {
   const router = useRouter()
+  const search = useSearchParams()
+
   const [newPassword, setNewPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
   const [sessionChecked, setSessionChecked] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [message, setMessage] = useState('')
+  const [loading, setLoading] = useState(true)
 
+  // Handle recovery flow (exchange ?code= for session if present)
   useEffect(() => {
-    const checkSession = async () => {
-      const { data, error } = await supabase.auth.getSession()
-      if (error || !data.session) {
-        // If no valid session, redirect to login
+    const run = async () => {
+      const code = search.get('code')
+      if (code) {
+        const { data, error } = await supabase.auth.exchangeCodeForSession(code)
+        if (error) {
+          setError(error.message)
+        } else if (!data?.session) {
+          setError('Could not establish a session from recovery link.')
+        }
+      }
+      setLoading(false)
+    }
+    run()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  // Ensure we have a valid session before letting user change password
+  useEffect(() => {
+    const check = async () => {
+      const { data } = await supabase.auth.getSession()
+      if (!data.session) {
         router.push('/login')
       } else {
         setSessionChecked(true)
       }
     }
-    checkSession()
-  }, [router])
+    if (!loading) check()
+  }, [loading, router])
 
-  const handleUpdate = async (e: React.FormEvent) => {
+  const handleUpdate = async (e: FormEvent) => {
     e.preventDefault()
     setError(null)
     setMessage('')
 
-    const { error } = await supabase.auth.updateUser({ password: newPassword })
+    if (newPassword.length < 8) {
+      setError('Password must be at least 8 characters.')
+      return
+    }
+    if (newPassword !== confirmPassword) {
+      setError('Passwords do not match.')
+      return
+    }
 
+    const { error } = await supabase.auth.updateUser({ password: newPassword })
     if (error) {
       setError(error.message)
     } else {
-      setMessage('Password updated successfully! Redirecting to login...')
-      setTimeout(() => router.push('/admin'), 3000)
+      setMessage('✅ Password updated! Redirecting to admin…')
+      setTimeout(() => router.push('/admin'), 1500)
     }
   }
 
-  if (!sessionChecked) {
+  if (loading || !sessionChecked) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-black text-white text-lg font-mono">
-        Checking session...
+        Checking session…
       </div>
     )
   }
@@ -60,6 +90,14 @@ export default function UpdatePasswordPage() {
           className="w-full p-2 rounded bg-zinc-800 text-white border border-zinc-600 focus:outline-none focus:ring-2 focus:ring-cyan-500"
           value={newPassword}
           onChange={(e) => setNewPassword(e.target.value)}
+          required
+        />
+        <input
+          type="password"
+          placeholder="Confirm new password"
+          className="w-full p-2 rounded bg-zinc-800 text-white border border-zinc-600 focus:outline-none focus:ring-2 focus:ring-cyan-500"
+          value={confirmPassword}
+          onChange={(e) => setConfirmPassword(e.target.value)}
           required
         />
 
