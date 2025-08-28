@@ -34,7 +34,7 @@ export default function ProductCard({ product }: { product: Product }) {
 
         {/* Name & Price */}
         <h2 className="text-lg sm:text-xl font-semibold text-lime-400">{product.name}</h2>
-        <p className="text-cyan-400 font-mono mt-1">₾{(product.price / 100).toFixed(2)}</p>
+        <p className="text-cyan-400 font-mono mt-1">£{(product.price / 100).toFixed(2)}</p>
 
         {/* Description */}
         <p className="text-sm text-gray-300 mt-2">

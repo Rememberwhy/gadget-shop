@@ -11,14 +11,15 @@ import {
 export interface CartItem {
   id: string
   name: string
-  price: number // stored in tetri (e.g. 15000 for ₾150.00)
+  price: number // MINOR units (tetri), e.g. 15000 = ₾150.00
   image: string
   quantity: number
 }
 
 interface CartContextType {
   cart: CartItem[]
-  addToCart: (item: Omit<CartItem, 'price'> & { price: number }) => void
+  // Expect price already in MINOR units
+  addToCart: (item: CartItem) => void
   removeFromCart: (id: string) => void
   clearCart: () => void
 }
@@ -36,16 +37,22 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const stored = localStorage.getItem('cart')
-    if (stored) setCart(JSON.parse(stored))
+    if (stored) {
+      try {
+        setCart(JSON.parse(stored))
+      } catch {
+        // bad JSON? reset
+        setCart([])
+      }
+    }
   }, [])
 
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cart))
   }, [cart])
 
-  const addToCart = (item: Omit<CartItem, 'price'> & { price: number }) => {
-    const priceInTetri = Math.round(item.price * 100)
-
+  const addToCart = (item: CartItem) => {
+    // IMPORTANT: item.price must already be in tetri (minor units)
     setCart(prev => {
       const exists = prev.find(p => p.id === item.id)
       if (exists) {
@@ -55,7 +62,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
             : p
         )
       }
-      return [...prev, { ...item, price: priceInTetri }]
+      return [...prev, item]
     })
   }
 

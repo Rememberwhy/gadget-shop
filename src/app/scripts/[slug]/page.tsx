@@ -8,52 +8,58 @@ import { useRouter } from 'next/navigation'
 
 const scripts = [
   {
-    name: 'WI-FI სკანერი',
+    name: 'Wi-Fi Scanner',
     slug: 'wifi-deauther',
     icon: '/script-icons/deauth.png',
     price: 45.0,
     content:
-      'ეს კოდი ამოწმებს და ტესტავს თქვენს Wi-Fi-ს, ამის მეშვეობით თქვენ აღმოაჩენთ რამდენად დაცულია თქვენ ინტერნეტი და თქვენი უსაფრთხოება. მოყვება დაყენების და გამართვის ყველანაირი ინსტრუქცია. თანამედროვე ტექნოლოგიებზე მორგებული დამცველი ჰექსამრიდისგან! ',
+      'This script checks and tests your Wi-Fi security, helping you discover how secure your internet connection and data really are. Comes with full installation and setup instructions. A next-generation defence tool by Hexamridi!',
     features: [
-      'უახლოესი ქსელების მონიტორინგი',
-      'სიგნალის სიძლიერისა და არხების ანალიზი',
-      'იდეალურია ტესტირებისთვის, პენტესტინგისთვის და უსაფრთხოების ანალიზისთვის',
+      'Monitor nearby networks',
+      'Analyse signal strength and channels',
+      'Ideal for testing, pentesting, and security analysis',
     ],
   },
   {
-    name: 'NFC ბრონი  მაქსიმალური დაცვა უნებართვო შეღწევისგან!',
+    name: 'NFC Shield – Maximum Protection Against Unauthorised Access',
     slug: 'nfc-clone',
     icon: '/script-icons/nfcscript.png',
-    price:  39.99,
-    content: 'NFC ბრონი არის უსაფრთხოების სკრიპტი, რომელიც შექმნილია იმისთვის, რომ დაიცვას თქვენი მოწყობილობა ან NFC ბარათი არასანქცირებული წვდომისა და მავნე შეტევებისგან. იგი სკანირებს მიმდებარე სიგნალებს, ამოიცნობს საეჭვო კავშირს და ავტომატურად ბლოკავს არასასურველ ქმედებებს.',
+    price: 39.99,
+    content:
+      'The NFC Shield is a security script designed to protect your device or NFC card from unauthorised access and malicious attacks. It scans surrounding signals, detects suspicious connections, and automatically blocks unwanted actions.',
     features: [
-      'იცავს პირად მონაცემებს',
-      'აძლიერებს NFC უსაფრთხოებას',
-      'გამოგადგებათ როგორც პირადი, ასევე პროფესიონალური უსაფრთხოებისთვის',
+      'Protects personal data',
+      'Enhances NFC security',
+      'Useful for both personal and professional security',
     ],
   },
   {
-    name: 'ვირუსებისგან წმენდა და მონიტორინგი',
+    name: 'Virus Cleaner & Monitoring',
     slug: 'bt-sniffer',
     icon: '/script-icons/blue.png',
-    price:  35,
-    content: 'ეს სკრიპტი სკანირებს სისტემას მავნე ფაილებისა და საეჭვო პროცესების დასადგენად. იგი ავტომატურად ასუფთავებს მოწყობილობას ვირუსებისგან და აწარმოებს მუდმივ მონიტორინგს სისტემის უსაფრთხოების გასაუმჯობესებლად.',
-    features: ['სწრაფი ანალიზი', 'ვირუსული ელემენტების ამოღება', 'უწყვეტი მონიტორინგი და გაფრთხილებაs'],
+    price: 35.0,
+    content:
+      'This script scans your system for malicious files and suspicious processes. It automatically removes viruses and continuously monitors the system to improve overall security.',
+    features: [
+      'Fast analysis',
+      'Malware removal',
+      'Continuous monitoring and alerts',
+    ],
   },
-
-    {
-        name: 'მონაცაემების გაჟონვის დეტექტორი',
-        slug: 'cred-dumper',
-        icon: '/script-icons/credential.png',
-        price: 25.99,
-        content: 'ეს სკრიპტი მონიტორინგს უწევს თქვენს სისტემას და ამოიცნობს მგრძნობიარე მონაცემების გაჟონვას. იგი ავტომატურად აფრთხილებს, თუ რაიმე საეჭვო აქტივობა დაფიქსირდა, რაც ხელს შეუწყობს თქვენი მონაცემების უსაფრთხოების დაცვას.',
-        features: [
-        'რეალურ დროში მონიტორინგი',
-        'სენსიტიური მონაცემების გადაცემის დაფიქსირება',
-        'შეტყობინება და ავტომატური შეჩერება',
-        'მონაცემთა უსაფრთხოების გაძლიერება',
-        ],
-    },
+  {
+    name: 'Credential Leak Detector',
+    slug: 'cred-dumper',
+    icon: '/script-icons/credential.png',
+    price: 25.99,
+    content:
+      'This script monitors your system and detects potential leaks of sensitive data. It automatically alerts you if suspicious activity is detected, helping safeguard your information.',
+    features: [
+      'Real-time monitoring',
+      'Detection of sensitive data transfers',
+      'Alerts and automatic prevention',
+      'Improves data security',
+    ],
+  },
 ]
 
 export default function ScriptPage(props: { params: Promise<{ slug: string }> }) {
@@ -68,7 +74,7 @@ export default function ScriptPage(props: { params: Promise<{ slug: string }> })
     addToCart({
       id: script.slug,
       name: script.name,
-      price: script.price, // price in GEL, will be stored in tetri
+      price: Math.round(script.price * 100), // convert GEL → tetri once
       image: script.icon,
       quantity: 1,
     })
@@ -103,7 +109,7 @@ export default function ScriptPage(props: { params: Promise<{ slug: string }> })
 
           <div className="flex items-center justify-between mt-6">
             <span className="text-2xl font-semibold text-lime-300">
-              ₾{script.price.toFixed(2)}
+              £{script.price.toFixed(2)}
             </span>
             <button
               onClick={handleBuy}
