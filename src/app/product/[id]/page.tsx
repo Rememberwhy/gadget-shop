@@ -172,3 +172,6 @@ export default function ProductDetailPage() {
     </div>
   )
 }
+
+
+// TODO: verifying latest version restored on 2025-09-02
