@@ -1,13 +1,12 @@
+// src/app/sitemap.xml/route.ts
 import { NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
-
-export const revalidate = 60 * 60 // seconds
 
 export async function GET() {
   const base = 'https://hexamridi.tech'
   const nowISO = new Date().toISOString()
 
-  // Public static pages (exclude private/utility)
+  // Public static pages (exclude private/utility routes)
   const staticPublicPaths = [
     '/', '/shop', '/cart', '/checkout', '/contact',
     '/disclaimer', '/home', '/ka', '/privacy-policy',
@@ -28,15 +27,15 @@ export async function GET() {
     priority: p === '/' ? '1.0' : '0.7',
   }))
 
-  // -------- Products from Supabase --------
+  // ---- Dynamic product pages from Supabase ----
   try {
     const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL!
-    const SUPABASE_KEY =
-      process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+    // Use anon key (safe for read-only published products under RLS)
+    const SUPABASE_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 
     const supabase = createClient(SUPABASE_URL, SUPABASE_KEY, { auth: { persistSession: false } })
 
-    // Adjust columns to your schema
+    // Adjust columns to match your schema
     const { data: products } = await supabase
       .from('products')
       .select('id, slug, updated_at, published')
@@ -44,15 +43,16 @@ export async function GET() {
       .limit(5000)
 
     for (const p of products ?? []) {
+      const handle = (p as any).slug ?? (p as any).id
       urls.push({
-        loc: `${base}/product/${(p as any).slug ?? (p as any).id}`,
+        loc: `${base}/product/${handle}`,
         lastmod: (p as any).updated_at ? new Date((p as any).updated_at).toISOString() : nowISO,
         changefreq: 'weekly',
         priority: '0.8',
       })
     }
   } catch {
-    // fail soft – static URLs only
+    // fail soft → only static URLs
   }
 
   const xml =
@@ -74,6 +74,7 @@ export async function GET() {
   return new NextResponse(xml, {
     headers: {
       'Content-Type': 'application/xml; charset=utf-8',
+      // Cache at the edge/CDN, refresh hourly, serve stale for a day
       'Cache-Control': 's-maxage=3600, stale-while-revalidate=86400',
     },
   })
