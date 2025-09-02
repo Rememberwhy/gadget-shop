@@ -1,0 +1,17 @@
+/
+/admin
+/auth/callback
+/cart
+/checkout
+/contact
+/disclaimer
+/home
+/ka
+/login
+/privacy-policy
+/reset-password
+/saturn-test
+/shop
+/terms
+/thank-you
+/update-password

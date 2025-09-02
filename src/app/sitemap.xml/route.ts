@@ -1,31 +1,80 @@
 import { NextResponse } from 'next/server'
+import { createClient } from '@supabase/supabase-js'
+
+export const revalidate = 60 * 60 // seconds
 
 export async function GET() {
-  const baseUrl = 'https://hexamridi.tech'
+  const base = 'https://hexamridi.tech'
+  const nowISO = new Date().toISOString()
 
-  const staticRoutes = [
-    '',
-    '/shop',
-    '/cart',
-    '/checkout',
-    '/admin',
+  // Public static pages (exclude private/utility)
+  const staticPublicPaths = [
+    '/', '/shop', '/cart', '/checkout', '/contact',
+    '/disclaimer', '/home', '/ka', '/privacy-policy',
+    '/saturn-test', '/terms',
   ]
 
-  const productSlugs = ['flipper-zero', 'raspberry-pi', 'wifi-adapter'] // TODO: Replace with Supabase slugs
+  type UrlEntry = {
+    loc: string
+    lastmod: string
+    changefreq: 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never'
+    priority: string
+  }
 
-  const urls = [
-    ...staticRoutes.map((path) => `<url><loc>${baseUrl}${path}</loc></url>`),
-    ...productSlugs.map((slug) => `<url><loc>${baseUrl}/product/${slug}</loc></url>`),
-  ]
+  const urls: UrlEntry[] = staticPublicPaths.map((p) => ({
+    loc: `${base}${p}`,
+    lastmod: nowISO,
+    changefreq: 'weekly',
+    priority: p === '/' ? '1.0' : '0.7',
+  }))
 
-  const xml = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  ${urls.join('\n')}
-</urlset>`
+  // -------- Products from Supabase --------
+  try {
+    const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL!
+    const SUPABASE_KEY =
+      process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+
+    const supabase = createClient(SUPABASE_URL, SUPABASE_KEY, { auth: { persistSession: false } })
+
+    // Adjust columns to your schema
+    const { data: products } = await supabase
+      .from('products')
+      .select('id, slug, updated_at, published')
+      .eq('published', true)
+      .limit(5000)
+
+    for (const p of products ?? []) {
+      urls.push({
+        loc: `${base}/product/${(p as any).slug ?? (p as any).id}`,
+        lastmod: (p as any).updated_at ? new Date((p as any).updated_at).toISOString() : nowISO,
+        changefreq: 'weekly',
+        priority: '0.8',
+      })
+    }
+  } catch {
+    // fail soft – static URLs only
+  }
+
+  const xml =
+    `<?xml version="1.0" encoding="UTF-8"?>\n` +
+    `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
+    urls
+      .map(
+        (u) =>
+          `  <url>\n` +
+          `    <loc>${u.loc}</loc>\n` +
+          `    <lastmod>${u.lastmod}</lastmod>\n` +
+          `    <changefreq>${u.changefreq}</changefreq>\n` +
+          `    <priority>${u.priority}</priority>\n` +
+          `  </url>`
+      )
+      .join('\n') +
+    `\n</urlset>\n`
 
   return new NextResponse(xml, {
     headers: {
-      'Content-Type': 'application/xml',
+      'Content-Type': 'application/xml; charset=utf-8',
+      'Cache-Control': 's-maxage=3600, stale-while-revalidate=86400',
     },
   })
 }
