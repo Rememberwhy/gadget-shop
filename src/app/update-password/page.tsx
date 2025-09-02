@@ -1,10 +1,22 @@
 'use client'
 
-import { useEffect, useState, FormEvent } from 'react'
+import { Suspense, useEffect, useState, FormEvent } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { supabase } from '@/lib/supabaseClient'
 
-export default function UpdatePasswordPage() {
+// Avoid static/prerender issues for this auth-sensitive route
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
+
+function Loading() {
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-black text-white text-lg font-mono">
+      Preparing password reset…
+    </div>
+  )
+}
+
+function UpdatePasswordClient() {
   const router = useRouter()
   const search = useSearchParams()
 
@@ -14,26 +26,33 @@ export default function UpdatePasswordPage() {
   const [error, setError] = useState<string | null>(null)
   const [message, setMessage] = useState('')
   const [loading, setLoading] = useState(true)
+  const [submitting, setSubmitting] = useState(false)
 
-  // Handle recovery flow (exchange ?code= for session if present)
+  // If a recovery link includes ?code=, exchange it for a session
   useEffect(() => {
     const run = async () => {
-      const code = search.get('code')
-      if (code) {
-        const { data, error } = await supabase.auth.exchangeCodeForSession(code)
-        if (error) {
-          setError(error.message)
-        } else if (!data?.session) {
-          setError('Could not establish a session from recovery link.')
+      try {
+        const code = search.get('code')
+        if (code) {
+          const { data, error } = await supabase.auth.exchangeCodeForSession(code)
+          if (error) {
+            setError(error.message)
+          } else if (!data?.session) {
+            setError('Could not establish a session from recovery link.')
+          }
         }
+      } catch (e: any) {
+        setError(e?.message || 'Unexpected error while handling recovery code.')
+      } finally {
+        setLoading(false)
       }
-      setLoading(false)
     }
-    run()
+    // kick off once on mount
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+    run()
+  }, [search])
 
-  // Ensure we have a valid session before letting user change password
+  // Ensure we have a valid session before allowing password change
   useEffect(() => {
     const check = async () => {
       const { data } = await supabase.auth.getSession()
@@ -60,12 +79,15 @@ export default function UpdatePasswordPage() {
       return
     }
 
+    setSubmitting(true)
     const { error } = await supabase.auth.updateUser({ password: newPassword })
+    setSubmitting(false)
+
     if (error) {
       setError(error.message)
     } else {
       setMessage('✅ Password updated! Redirecting to admin…')
-      setTimeout(() => router.push('/admin'), 1500)
+      setTimeout(() => router.push('/admin'), 1200)
     }
   }
 
@@ -91,6 +113,8 @@ export default function UpdatePasswordPage() {
           value={newPassword}
           onChange={(e) => setNewPassword(e.target.value)}
           required
+          minLength={8}
+          autoComplete="new-password"
         />
         <input
           type="password"
@@ -99,6 +123,8 @@ export default function UpdatePasswordPage() {
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
           required
+          minLength={8}
+          autoComplete="new-password"
         />
 
         {error && <p className="text-red-500 text-sm">{error}</p>}
@@ -106,14 +132,29 @@ export default function UpdatePasswordPage() {
 
         <button
           type="submit"
-          className="w-full bg-cyan-500 hover:bg-cyan-600 text-black font-bold py-2 rounded transition duration-300"
+          disabled={submitting}
+          className="w-full bg-cyan-500 hover:bg-cyan-600 text-black font-bold py-2 rounded transition duration-300 disabled:opacity-60"
         >
-          Update Password
+          {submitting ? 'Updating…' : 'Update Password'}
+        </button>
+
+        <button
+          type="button"
+          onClick={() => router.replace('/login')}
+          className="w-full mt-2 bg-transparent border border-zinc-600 hover:bg-zinc-800 text-white font-bold py-2 rounded transition duration-300"
+        >
+          Go to login
         </button>
       </form>
     </div>
   )
 }
 
-
-// TODO: verifying latest version restored on 2025-09-02
+export default function UpdatePasswordPage() {
+  // ✅ Wrap the component that uses useSearchParams in Suspense
+  return (
+    <Suspense fallback={<Loading />}>
+      <UpdatePasswordClient />
+    </Suspense>
+  )
+}
