@@ -1,36 +1,168 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Hexamridi.tech
 
-## Getting Started
+## Overview
 
-First, run the development server:
+**Hexamridi.tech** is a **security-aware full-stack web platform** designed for delivering **digital products and subscription-based services**.  
+The platform is built using modern web technologies with a strong emphasis on **authentication, authorization, backend integrity, and defensive system design**.
 
-```bash
+Hexamridi is intended to demonstrate how a real-world SaaS-style system can be implemented with **security-first architecture**, where access control and data protection are enforced at multiple layers of the stack.
+
+---
+
+## Purpose of the Project
+
+The purpose of Hexamridi.tech is to:
+
+- provide a production-style full-stack application example
+- demonstrate secure authentication and authorization flows
+- implement role-based access control (RBAC)
+- integrate secure payment and subscription handling
+- enforce database-level security using Row Level Security (RLS)
+- serve as a foundation for scalable and maintainable SaaS systems
+
+The project is suitable for learning, academic review, portfolio evaluation, and further extension into a production environment.
+
+---
+
+## Core Features
+
+- User authentication and session management
+- Role-based access control (user / admin separation)
+- Secure admin dashboard
+- Digital product management and delivery
+- Subscription-based payments via Stripe
+- Backend authorization enforced at database level
+- Environment-based configuration for development and production
+
+---
+
+## System Architecture
+
+Hexamridi follows a **layered full-stack architecture** with clear separation of responsibilities.
+
+### Frontend Layer
+
+- Built with **Next.js (App Router)** and **TypeScript**
+- Component-driven user interface
+- Client-side validation for forms and user input
+- No trust placed in client-side authorization logic
+- Secure handling of user session state
+
+### Backend Layer
+
+- Powered by **Supabase**
+  - PostgreSQL database
+  - Authentication services
+  - Authorization logic
+- REST-style API interactions
+- Server-side permission checks
+- Role-based access enforcement
+
+### Database Layer
+
+- PostgreSQL relational database
+- Structured schemas with explicit relationships
+- **Row Level Security (RLS)** policies to enforce access control
+- Minimal-privilege access patterns
+- Database acts as the final authority for permissions
+
+### Payments Layer
+
+- Integrated with **Stripe**
+- Secure checkout and subscription handling
+- Webhook-based event processing
+- No sensitive payment logic handled on the client
+
+---
+
+## Security Design Principles
+
+Security is treated as a **core requirement** of the system.
+
+Key principles applied:
+
+- Defense in depth across frontend, backend, and database
+- Authentication and authorization enforced at multiple layers
+- Database-level access control using PostgreSQL RLS
+- No reliance on client-side role or permission checks
+- Secure handling of secrets and environment variables
+- Awareness of common web vulnerabilities (OWASP Top 10)
+
+The platform is designed with **bug-bounty-style threat modeling** in mind, particularly focusing on:
+
+- authentication bypass attempts
+- privilege escalation paths
+- API misuse and logic flaws
+- improper access control scenarios
+
+---
+
+## Technologies Used
+
+### Frontend
+- Next.js
+- React
+- TypeScript
+- Component-based UI architecture
+
+### Backend
+- Supabase
+- PostgreSQL
+- REST APIs
+- Authentication and authorization services
+
+### Payments
+- Stripe (checkout sessions, subscriptions, webhooks)
+
+### Security & Tooling
+- PostgreSQL Row Level Security (RLS)
+- Secure environment configuration
+- Manual testing using tools such as:
+  - curl (API request testing)
+  - browser developer tools
+- Linux-based development environments
+
+---
+
+###Getting Started
+Prerequisites
+
+Node.js (LTS recommended)
+
+npm, pnpm, or yarn
+
+Supabase project
+
+Stripe account (for payment features)
+
+Installation
+
+Clone the repository:
+
+git clone https://github.com/Rememberwhy/gadget-shop.git
+cd gadget-shop
+
+
+###Install dependencies:
+
+npm install
+
+Environment Variables
+
+Create a .env.local file in the root directory:
+
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+STRIPE_SECRET_KEY=your_stripe_secret_key
+STRIPE_WEBHOOK_SECRET=your_stripe_webhook_secret
+
+Running the Application
+
+Start the development server:
+
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+###The application will be available at:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+http://localhost:3000
