@@ -2,51 +2,70 @@
 
 ## Overview
 
-**Hexamridi.tech** is a **security-aware full-stack web platform** designed for delivering **digital products and subscription-based services**.  
-The platform is built using modern web technologies with a strong emphasis on **authentication, authorization, backend integrity, and defensive system design**.
+**Hexamridi.tech** is a **security-aware e-commerce platform** designed for selling **technology and privacy-focused products**, including computer accessories, electronic gadgets, and security tools intended for research and personal protection.
 
-Hexamridi is intended to demonstrate how a real-world SaaS-style system can be implemented with **security-first architecture**, where access control and data protection are enforced at multiple layers of the stack.
+The platform combines **modern full-stack web development** with a **defensive backend architecture**, ensuring that authentication, authorization, and data access are handled securely at every layer.
+
+Hexamridi is built to demonstrate how a real-world online store can be implemented with **security-first principles**, rather than treating security as an afterthought.
 
 ---
 
-## Purpose of the Project
+## Purpose of the Platform
 
-The purpose of Hexamridi.tech is to:
+Hexamridi.tech is designed to:
 
-- provide a production-style full-stack application example
-- demonstrate secure authentication and authorization flows
-- implement role-based access control (RBAC)
-- integrate secure payment and subscription handling
-- enforce database-level security using Row Level Security (RLS)
-- serve as a foundation for scalable and maintainable SaaS systems
+- sell physical technology products (keyboards, gadgets, computer accessories)
+- offer security-related tools for researchers and privacy-conscious users
+- provide a clean and secure shopping experience
+- demonstrate secure full-stack e-commerce architecture
+- serve as a foundation for further expansion of security-focused products
 
-The project is suitable for learning, academic review, portfolio evaluation, and further extension into a production environment.
+The platform is suitable for portfolio evaluation, academic review, and real-world deployment.
+
+---
+
+## Product Categories
+
+Hexamridi.tech supports multiple product categories, including:
+
+### Consumer Technology
+- Mechanical and custom keyboards
+- Computer accessories
+- General electronic gadgets
+- Limited-quantity tech products
+
+### Security & Privacy Tools
+- Wi-Fi scanning devices for security research and analysis
+- NFC blockers designed to prevent unauthorized NFC/RFID access
+- Privacy-oriented hardware intended for defensive and ethical use
+
+All security-related products are intended for **legitimate research, testing, and personal protection purposes only**.
 
 ---
 
 ## Core Features
 
-- User authentication and session management
-- Role-based access control (user / admin separation)
-- Secure admin dashboard
-- Digital product management and delivery
-- Subscription-based payments via Stripe
-- Backend authorization enforced at database level
+- Secure user authentication and session handling
+- User accounts for order tracking and checkout
+- Admin dashboard for managing products and inventory
+- Product listing and detail pages
+- Secure checkout flow
+- Backend authorization for admin-only operations
 - Environment-based configuration for development and production
 
 ---
 
 ## System Architecture
 
-Hexamridi follows a **layered full-stack architecture** with clear separation of responsibilities.
+Hexamridi follows a **modern full-stack architecture** with clear separation of responsibilities.
 
 ### Frontend Layer
 
 - Built with **Next.js (App Router)** and **TypeScript**
-- Component-driven user interface
-- Client-side validation for forms and user input
+- Component-driven UI architecture
+- Responsive layout for desktop and mobile
+- Client-side form validation
 - No trust placed in client-side authorization logic
-- Secure handling of user session state
 
 ### Backend Layer
 
@@ -55,47 +74,25 @@ Hexamridi follows a **layered full-stack architecture** with clear separation of
   - Authentication services
   - Authorization logic
 - REST-style API interactions
-- Server-side permission checks
-- Role-based access enforcement
+- Server-side validation of permissions
+- Clear separation between user and admin functionality
 
 ### Database Layer
 
 - PostgreSQL relational database
-- Structured schemas with explicit relationships
-- **Row Level Security (RLS)** policies to enforce access control
-- Minimal-privilege access patterns
+- Structured schemas for users, products, and orders
+- **Row Level Security (RLS)** to enforce access control
 - Database acts as the final authority for permissions
 
 ### Payments Layer
 
 - Integrated with **Stripe**
-- Secure checkout and subscription handling
-- Webhook-based event processing
-- No sensitive payment logic handled on the client
+- Secure checkout sessions
+- No sensitive payment data stored on the application server
+- Payment logic handled entirely by Stripe
 
 ---
 
-## Security Design Principles
-
-Security is treated as a **core requirement** of the system.
-
-Key principles applied:
-
-- Defense in depth across frontend, backend, and database
-- Authentication and authorization enforced at multiple layers
-- Database-level access control using PostgreSQL RLS
-- No reliance on client-side role or permission checks
-- Secure handling of secrets and environment variables
-- Awareness of common web vulnerabilities (OWASP Top 10)
-
-The platform is designed with **bug-bounty-style threat modeling** in mind, particularly focusing on:
-
-- authentication bypass attempts
-- privilege escalation paths
-- API misuse and logic flaws
-- improper access control scenarios
-
----
 
 ## Technologies Used
 
@@ -103,7 +100,7 @@ The platform is designed with **bug-bounty-style threat modeling** in mind, part
 - Next.js
 - React
 - TypeScript
-- Component-based UI architecture
+- Component-based UI design
 
 ### Backend
 - Supabase
@@ -112,17 +109,18 @@ The platform is designed with **bug-bounty-style threat modeling** in mind, part
 - Authentication and authorization services
 
 ### Payments
-- Stripe (checkout sessions, subscriptions, webhooks)
+- Stripe (secure checkout)
 
 ### Security & Tooling
 - PostgreSQL Row Level Security (RLS)
 - Secure environment configuration
 - Manual testing using tools such as:
-  - curl (API request testing)
+  - curl (HTTP and API request testing)
   - browser developer tools
 - Linux-based development environments
 
 ---
+
 
 ###Getting Started
 Prerequisites
